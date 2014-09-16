@@ -53,11 +53,15 @@ $(document).ready(function(){
         }
 
         prey.remove();
-        // predator.remove();
         var preysize = parseInt(prey.css('height'));
         var size = parseInt(predator.css('height')) + preysize;
-        //debugger;
         predator.css({height: size, width: size});
+
+        var r = Math.floor(Math.random() * 255);
+        var g = Math.floor(Math.random() * 255);
+        var b = Math.floor(Math.random() * 255);
+        var colorstring = 'rgb(' + r + ',' + g + ',' + b + ')';
+        predator.css('borderColor', colorstring);
 
         return prey.attr('id');
       }
@@ -80,7 +84,6 @@ $(document).ready(function(){
     for (var k = 0; k < toRemove.length; k++) {
 
       var targetIDX = window.dancers.map(function(n) {return n.$node.attr('id')}).indexOf(toRemove[k]);
-      //debugger;
       window.dancers.splice(targetIDX, 1);
     };
 

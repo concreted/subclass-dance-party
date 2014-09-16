@@ -19,7 +19,7 @@ WobbleDancer.prototype.step = function(){
   this.oldStep();
 
   this.randomMove();
-  //this.getBigger();
+  this.getSmaller();
 
 
 };
@@ -31,9 +31,9 @@ WobbleDancer.prototype.randomMove = function() {
   this.$node.animate({top: newTop, left: newLeft}, 5000);
 };
 
-WobbleDancer.prototype.getBigger = function(prey){
-  prey = prey || 10;
-  var size = this.$node.css('height') + prey;
+WobbleDancer.prototype.getSmaller = function(prey){
+  prey = prey || 0.5;
+  var size = parseInt(this.$node.css('height')) - prey;
   this.$node.css({height: size, width: size});
 };
 
