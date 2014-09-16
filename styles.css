@@ -23,6 +23,11 @@ body, a:link, a:visited, a:active{
 .title{
   background-color: #777;
 }
+
+.dancer {
+  transition: width 1s ease, height 1s ease;
+}
+
 .blinkydancer{
   border:10px solid blue;
   border-radius:10px;
@@ -45,6 +50,13 @@ body, a:link, a:visited, a:active{
 }
 .wobbledancer{
   border: 10px solid purple;
+  height: 30px;
+  width: 30px;
   border-radius:100%;
   position:absolute;
+}
+
+.dancer-grow {
+  width: 100px;
+  height: 100px;
 }

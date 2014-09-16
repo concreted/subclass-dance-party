@@ -16,8 +16,8 @@ Dancer.prototype.setPosition = function(top, left){
 };
 
 Dancer.prototype.getPosition = function() {
-
-}
+  var position = this.$node.css()
+};
 
 Dancer.prototype.stepRight = function() {
 

@@ -28,6 +28,7 @@ $(document).ready(function(){
     var b = Math.floor(Math.random() * 255);
     var colorstring = 'rgb(' + r + ',' + g + ',' + b + ')';
     $(this).css('borderColor', colorstring);
+    $(this).toggleClass('dancer-grow');
   });
 
 });

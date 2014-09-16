@@ -31,13 +31,13 @@ WobbleDancer.prototype.step = function(){
 
 WobbleDancer.prototype.getBigger = function(){
   var size = parseInt(this.$node.css('borderWidth')) + this.stepSize;
-  this.$node.css('borderWidth', size);
+  //this.$node.css('borderWidth', size);
 
 };
 
 WobbleDancer.prototype.getSmaller = function(){
   var size = parseInt(this.$node.css('borderWidth')) - this.stepSize;
-  this.$node.css('borderWidth', size);
+  //this.$node.css('borderWidth', size);
 
 };
 
