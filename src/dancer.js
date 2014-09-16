@@ -1,33 +1,64 @@
 // Creates and returns a new dancer object that can step
-var makeDancer = function(top, left, timeBetweenSteps){
+var Dancer = function(top, left, timeBetweenSteps){
+  this.$node = $('<span class="dancer"></span>');
+  this.timeBetweenSteps = timeBetweenSteps;
+  this.stepSize = Math.random() * 20; //stepSize;
+  this.setPosition(top, left);
+  this.step();
+};
 
-  var dancer = {};
-
-  // use jQuery to create an HTML <span> tag
-  dancer.$node = $('<span class="dancer"></span>');
-
-
-  dancer.step = function(){
-    // the basic dancer doesn't do anything interesting at all on each step,
-    // it just schedules the next step
-    setTimeout(dancer.step, timeBetweenSteps);
+Dancer.prototype.setPosition = function(top, left){
+  var styleSettings = {
+    top: top,
+    left: left
   };
-  dancer.step();
+  this.$node.css(styleSettings);
+};
 
-  dancer.setPosition = function(top, left){
-    // Use css top and left properties to position our <span> tag
-    // where it belongs on the page. See http://api.jquery.com/css/
-    //
-    var styleSettings = {
-      top: top,
-      left: left
-    };
-    dancer.$node.css(styleSettings);
-  };
+Dancer.prototype.getPosition = function() {
 
-  // now that we have defined the dancer object, we can start setting up important parts of it by calling the methods we wrote
-  // this one sets the position to some random default point within the body
-  dancer.setPosition(top, left);
+}
 
-  return dancer;
+Dancer.prototype.stepRight = function() {
+
+  var rStep = parseInt(this.$node.css('left')) + this.stepSize;
+  this.$node.css('left',rStep);
+};
+
+Dancer.prototype.stepLeft = function() {
+  var lStep = parseInt(this.$node.css('left')) - this.stepSize;
+
+  this.$node.css('left',lStep);
+};
+
+Dancer.prototype.stepUp = function(speed) {
+  speed = speed || 1;
+  var uStep = parseInt(this.$node.css('top')) - this.stepSize * speed;
+
+  this.$node.css('top', uStep);
+};
+
+Dancer.prototype.stepDown = function(speed) {
+  speed = speed || 1;
+  var dStep = parseInt(this.$node.css('top')) + this.stepSize * speed;
+
+  this.$node.css('top', dStep);
+};
+
+Dancer.prototype.step = function() {
+  setTimeout(this.step.bind(this), this.timeBetweenSteps);
+};
+
+Dancer.prototype.lineUp = function() {
+  if (parseInt(this.$node.css('top')) > 10) {
+    this.stepUp(10);
+  }
+};
+
+Dancer.prototype.changeColor = function() {
+  var r = Math.floor(Math.random() * 255);
+  var g = Math.floor(Math.random() * 255);
+  var b = Math.floor(Math.random() * 255);
+  var colorstring = 'rgb(' + r + ',' + g + ',' + b + ')';
+  this.$node.css('borderColor', colorstring);
 };

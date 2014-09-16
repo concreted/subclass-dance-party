@@ -4,6 +4,9 @@ body, html{
 body{
   margin: 0px;
   background-color:#444;
+  background-image: url('http://www.nasa.gov/images/content/627369main_hubble_1600_946-710.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   font-size: 18px;
 }
 body, a:link, a:visited, a:active{
@@ -20,8 +23,28 @@ body, a:link, a:visited, a:active{
 .title{
   background-color: #777;
 }
-.dancer{
+.blinkydancer{
+  border:10px solid blue;
+  border-radius:10px;
+  position:absolute;
+}
+.shuffledancer{
   border:10px solid red;
   border-radius:10px;
+  position:absolute;
+}
+.squaredancer{
+  border:10px solid yellow;
+  border-radius:0px;
+  position:absolute;
+}
+.runningdancer{
+  border:10px solid green;
+  border-radius:10px;
+  position:absolute;
+}
+.wobbledancer{
+  border: 10px solid purple;
+  border-radius:100%;
   position:absolute;
 }
