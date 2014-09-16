@@ -57,6 +57,14 @@ body, a:link, a:visited, a:active{
   position:absolute;
 }
 
+.wabbledancer{
+  border: 10px solid yellow;
+  height: 30px;
+  width: 30px;
+  border-radius:100%;
+  position:absolute;
+}
+
 .dancer-grow {
   width: 100px;
   height: 100px;
