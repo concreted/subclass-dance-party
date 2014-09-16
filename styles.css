@@ -62,6 +62,7 @@ button {
   width: 30px;
   border-radius:100%;
   position:absolute;
+  box-shadow: inset 10px 10px 10px #302F2F, 10px 10px 10px #302F2F;
 }
 
 .wabbledancer{
@@ -70,6 +71,7 @@ button {
   width: 30px;
   border-radius:100%;
   position:absolute;
+
 }
 
 .dancer-grow {
