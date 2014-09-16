@@ -10,16 +10,9 @@ $(document).ready(function(){
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
       Math.random() * 1000
-      //Math.random() * 20
     );
     window.dancers.push(dancer);
     $("body").append(dancer.$node);
-  });
-
-  $(".lineUpButton").on("click", function() {
-    for (var i = 0; i < window.dancers.length; i++) {
-      setInterval(window.dancers[i].lineUp.bind(window.dancers[i]), 250);
-    }
   });
 
   $("body").on('mouseover', '.dancer', function() {
@@ -29,7 +22,13 @@ $(document).ready(function(){
     var colorstring = 'rgb(' + r + ',' + g + ',' + b + ')';
     $(this).css('borderColor', colorstring);
     $(this).toggleClass('dancer-grow');
+    $(this).toggleClass('dancer-small');
   });
+
+  setInterval(function() {
+    var prey = $('.dancer-grow').collision('.dancer-small');
+    prey.remove();
+  }, 50);
 
 });
 

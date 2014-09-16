@@ -1,7 +1,8 @@
 var WobbleDancer = function(top, left, timeBetweenSteps){
   this.oldStep = Dancer.prototype.step;
   Dancer.call(this, top, left, timeBetweenSteps);
-  this.$node = $('<span class="dancer wobbledancer"></span>');
+  this.$node = $('<span class="dancer dancer-small wobbledancer"></span>');
+  //this.$node.draggable();
   this.where = 'right';
   this.size = 'small';
   this.setPosition(top, left);
@@ -13,26 +14,22 @@ WobbleDancer.prototype.constructor = WobbleDancer;
 WobbleDancer.prototype.step = function(){
   this.oldStep();
 
-  if (this.size === 'small'){
-    if (parseInt(this.$node.css('borderWidth')) > 5*this.stepSize){
-      this.size = 'big';
-    } else {
-      this.getBigger();
-    }
-  } else {
-    if (parseInt(this.$node.css('borderWidth')) < this.stepSize/5){
-      this.size = 'small';
-    } else {
-      this.getSmaller();
-    }
-  }
+  this.randomMove();
+  //this.getBigger();
+
 
 };
 
-WobbleDancer.prototype.getBigger = function(){
-  var size = parseInt(this.$node.css('borderWidth')) + this.stepSize;
-  //this.$node.css('borderWidth', size);
+WobbleDancer.prototype.randomMove = function() {
+  var newTop = Math.random() * $(window).height();
+  var newLeft = Math.random() * $(window).width();
 
+  this.$node.animate({top: newTop, left: newLeft}, 10000);
+};
+
+WobbleDancer.prototype.getBigger = function(){
+  this.$node.toggleClass('dancer-small');
+  this.$node.toggleClass('dancer-grow');
 };
 
 WobbleDancer.prototype.getSmaller = function(){
