@@ -27,18 +27,28 @@ $(document).ready(function(){
 
   setInterval(function() {
     var eat = function(obj1, obj2) {
-      obj1 = "#" + obj1.$node.attr('id');
-      obj2 = "#" + obj2.$node.attr('id');
-      var predator = $(obj1).collision(obj2);
-      var prey = $(obj2).collision(obj1);
-      if (prey.length > 0) {
-        console.log('collision!');
-        prey.remove();
 
-        // var preysize = parseInt(prey.css('height'));
+      o1 = "#" + obj1.$node.attr('id');
+      o2 = "#" + obj2.$node.attr('id');
+      var collider1 = $(o1).collision(o2);
+      var collider2 = $(o2).collision(o1);
+      if (collider2.length > 0) {
+        var predator;
+        var prey;
+        if (parseInt(collider1[0].css('height')) > parseInt(collider2[0].css('height'))) {
+          predator = collider1[0];
+          prey = collider2[0];
+        } else {
+          prey = collider1[0];
+          predator = collider2[0];
+        }
+
+        prey.remove();
+        // predator.remove();
+        // // var preysize = parseInt(prey.css('height'));
         // var size = predator.css('height') + preysize;
         // predator.css({height: size, width: size});
-        return true;
+        return prey.css.attr('id');
       }
       return false;
     };
@@ -50,9 +60,9 @@ $(document).ready(function(){
         if (window.dancers[i].$node.attr('id') !== window.dancers[j].$node.attr('id')) {
           var eaten = eat(window.dancers[i], window.dancers[j]);
           //console.log('eating');
-          if (eaten) {
-
-            toRemove.push(j);
+          if (eaten !== false) {
+            //toRemove.push(j);
+            toRemove.push(eaten);
           }
         }
       }

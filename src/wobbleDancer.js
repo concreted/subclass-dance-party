@@ -28,7 +28,7 @@ WobbleDancer.prototype.randomMove = function() {
   var newTop = Math.random() * $(window).height();
   var newLeft = Math.random() * $(window).width();
 
-  this.$node.animate({top: newTop, left: newLeft}, 100);
+  this.$node.animate({top: newTop, left: newLeft}, 5000);
 };
 
 WobbleDancer.prototype.getBigger = function(prey){
