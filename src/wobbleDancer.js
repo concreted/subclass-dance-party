@@ -4,7 +4,7 @@ var WobbleDancer = function(top, left, timeBetweenSteps){
 
   var currentID = Math.floor(Math.random() * 1000);
 
-  this.$node = $('<span class="dancer dancer-small wobbledancer" id="'+ currentID +'"></span>');
+  this.$node = $('<span class="dancer follower orbit wobbledancer" id="'+ currentID +'"></span>');
 
   this.setPosition(top, left);
 
@@ -18,17 +18,26 @@ WobbleDancer.prototype.constructor = WobbleDancer;
 WobbleDancer.prototype.step = function(){
   this.oldStep();
 
-  this.randomMove();
-  this.getSmaller();
-
-
+  //this.randomMove();
+  //this.getSmaller();
 };
 
 WobbleDancer.prototype.randomMove = function() {
-  var newTop = Math.random() * $(window).height();
-  var newLeft = Math.random() * $(window).width();
+  var newTop;
+  var newLeft;
+  if (window.leader !== null) {
+    console.log('following leader');
+    newTop = parseInt(window.leader.css('top'));
+    newLeft = parseInt(window.leader.css('left'));
+    // newTop = 0;
+    // newLeft = 0;
+  }
+  else {
+    newTop = Math.random() * $(window).height();
+    newLeft = Math.random() * $(window).width();
+  }
 
-  this.$node.animate({top: newTop, left: newLeft}, 5000);
+  this.$node.animate({top: newTop, left: newLeft}, 2000);
 };
 
 WobbleDancer.prototype.getSmaller = function(prey){
